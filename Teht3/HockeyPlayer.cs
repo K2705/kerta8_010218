@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Teht3
 {
     enum Handed : byte { Right, Left }
     enum Position : byte { Goalie, Defense, Offense }
 
+    [Serializable()]
     class HockeyPlayer
     {
         public string FirstName { get; }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Teht3
 {
@@ -19,12 +17,32 @@ namespace Teht3
             hockeyClub.AddPlayer(new HockeyPlayer("Player6", "NoLastName", Position.Offense, Handed.Right));
             hockeyClub.AddPlayer(new HockeyPlayer("Player7", "NoLastName", Position.Defense, Handed.Right));
 
-            Console.WriteLine(hockeyClub.Name);
-            Console.WriteLine(hockeyClub.City);
-            for (int i = 0; i < hockeyClub.PlayerCount(); i++)
-            {
-                Console.WriteLine(hockeyClub.GetPlayer(i));
-            }
+            hockeyClub.Print();
+
+            //Save into a file
+            Stream stream = File.Open("data.dat", FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, hockeyClub);
+            stream.Close();
+
+            //Wipe the hockeyClub
+            hockeyClub = null;
+
+            //Load from file
+            stream = File.Open("data.dat", FileMode.Open);
+            formatter = new BinaryFormatter();
+            hockeyClub = (HockeyClub)formatter.Deserialize(stream);
+            stream.Close();
+
+            Console.WriteLine();
+            Console.WriteLine("Test file saving...");
+
+            hockeyClub.Print();
+        }
+
+        private static void Print(HockeyClub hockeyClub)
+        {
+            
         }
     }
 }

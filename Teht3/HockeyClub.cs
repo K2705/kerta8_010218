@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Teht3
 {
+    [Serializable()]
     class HockeyClub
     {
         public string Name { get; }
@@ -36,6 +34,16 @@ namespace Teht3
         public void AddPlayer(HockeyPlayer player)
         {
             Players.Add(player);
+        }
+
+        public void Print()
+        {
+            Console.WriteLine(Name);
+            Console.WriteLine(City);
+            for (int i = 0; i < PlayerCount(); i++)
+            {
+                Console.WriteLine(GetPlayer(i));
+            }
         }
     }
 }
