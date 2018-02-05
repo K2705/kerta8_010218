@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PixieGrower
+﻿namespace PixieGrower
 {
     /// <summary>
     /// A pixie, bred for its magical dust
